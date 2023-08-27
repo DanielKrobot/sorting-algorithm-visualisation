@@ -9,6 +9,16 @@
     --color-5: #e0e1dd;
 }
 
+@media (prefers-color-scheme: dark) {
+    * {
+        --color-1: #0d1b2a;
+        --color-2: #1b263b;
+        --color-3: #415a77;
+        --color-4: #778da9;
+        --color-5: #e0e1dd;
+    }
+}
+
 body {
     background-color: var(--color-3);
     display: flex;
