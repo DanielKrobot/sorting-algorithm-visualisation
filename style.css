@@ -43,16 +43,22 @@ section {
     background-color: var(--color-2);
     border: 1px solid var(--color-1);
     color: var(--color-5);
+    font-size: 1rem;
+    padding: 1rem;
+    font-weight: 700;
 }
 
 #selector > button:hover {
-    background: linear-gradient(
-        var(--color-2),
-        var(--color-3),
-        var(--color-4) 
-    );
+    background-color: var(--color-4);
+    color: var(--color-1);
     border-bottom: 0;
 }
+
+#shuffle:hover, #start:hover {
+    background-color: var(--color-4);
+    color: var(--color-1);
+    font-weight: 800;
+} 
 
 #graph {
     background-color: var(--color-4);
