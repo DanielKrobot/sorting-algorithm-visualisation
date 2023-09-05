@@ -48,10 +48,9 @@ section {
     font-weight: 700;
 }
 
-#selector > button:hover {
+#selector > .selected {
     background-color: var(--color-4);
     color: var(--color-1);
-    border-bottom: 0;
 }
 
 #shuffle:hover, #start:hover {
