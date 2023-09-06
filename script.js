@@ -3,6 +3,7 @@ const shuffle = document.querySelector("#shuffle");
 const start = document.querySelector("#start");
 const bubble = document.querySelector("#bubble");
 const insertion = document.querySelector("#insertion");
+const selection = document.querySelector("#selection");
 const selector = document.querySelectorAll("#selector > button");
 
 let arr = [];
@@ -67,9 +68,10 @@ async function bubbleSort() {
             let graphElemnts = graph.querySelectorAll("*");
             graphElemnts[j].style.backgroundColor = "green";
             if (arr[j] > arr[j + 1]) {
-                let temp = arr[j + 1];
-                arr[j + 1] = arr[j];
-                arr[j] = temp;
+                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
+                // let temp = arr[j + 1];
+                // arr[j + 1] = arr[j];
+                // arr[j] = temp;
             }
             await wait(10)
             updateGraph() 
@@ -106,6 +108,39 @@ async function insertionSort () {
     isSorted = true;
 }
 
+async function selectionSort() {
+    if (isSorting || isSorted) return;
+    isSorting = true;
+    
+    for (let i = 0; i < arr.length; i++) {
+        let graphElemnts = graph.querySelectorAll("*");
+        let min = i;
+        for (let j = i + 1; j < arr.length; j++) {
+            graphElemnts = graph.querySelectorAll("*");
+            if (arr[j] < arr[min]) {
+                min = j;
+                graphElemnts[j].style.backgroundColor = "green";
+            } else {
+                graphElemnts[j].style.backgroundColor = "red"
+            };
+            await wait(20)
+            updateGraph()
+            graphElemnts = graph.querySelectorAll("*");
+            graphElemnts[min].style.backgroundColor = "green";
+        }
+        if (min !== i) {
+            [arr[i], arr[min]] = [arr[min], arr[i]]
+            
+            graphElemnts[i].style.backgroundColor = "green";
+            
+        }
+        await wait(20)
+        updateGraph()
+    }
+    isSorting = false;
+    isSorted = true;
+}
+
 shuffle.addEventListener("click", shuffleArray);
 start.addEventListener("click", () => sortType());
 
@@ -123,4 +158,9 @@ insertion.addEventListener("click", () => {
     insertion.classList.add("selected")
 })
 
-  
+selection.addEventListener("click", () => {
+    if (isSorting) return;
+    sortType = selectionSort;
+    selector.forEach(btn => btn.classList.remove("selected"))
+    selection.classList.add("selected")
+})  
