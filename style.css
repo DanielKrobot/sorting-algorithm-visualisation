@@ -35,6 +35,7 @@ section {
 
 #selector {
     display: flex;
+    overflow-x: auto;
 }
 
 #selector > button {
